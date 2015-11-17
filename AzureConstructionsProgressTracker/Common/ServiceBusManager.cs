@@ -18,7 +18,6 @@ namespace AzureConstructionsProgressTracker.Common
         public void CreateQueue()
         {
             var namespaceManager = NamespaceManager.CreateFromConnectionString(_serviceBusNamespaceConnectionString);
-
             if (!namespaceManager.QueueExists(QueueName))
             {
                 namespaceManager.CreateQueue(QueueName);
@@ -30,8 +29,7 @@ namespace AzureConstructionsProgressTracker.Common
             var brokeredMessage = new BrokeredMessage(message);
 
             var topicClient = QueueClient.CreateFromConnectionString(_serviceBusNamespaceConnectionString, QueueName);
-
-            topicClient.Send(brokeredMessage);
+            await topicClient.SendAsync(brokeredMessage);
         }
     }
 }

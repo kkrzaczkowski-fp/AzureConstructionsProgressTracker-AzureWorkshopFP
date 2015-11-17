@@ -18,8 +18,6 @@ namespace PictureOptimizer
 {
     public class Functions
     {
-        // TODO ex3: Implement communication with Service Bus using WebJob SDK
-        // https://azure.microsoft.com/pl-pl/documentation/articles/websites-dotnet-webjobs-sdk-service-bus/
         public static void ProcessQueueMessage([ServiceBusTrigger("resizepicturesqueue")] ResizePictureMessage message, TextWriter logger)
         {
             var azureStorageConnectionString = ConfigurationManager.ConnectionStrings["AzureStorage"].ConnectionString;
